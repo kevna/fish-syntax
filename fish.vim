@@ -11,66 +11,66 @@ endif
 "---------------------------------------------------------------------------------------------------------------------------/
 " Comments in fish scripts
 "---------------------------------------------------------------------------------------------------------------------------/
-syn keyword fishScriptTodo contained TODO FIXME XXX NOTE
-syn match fishScriptComment "#.*$" contains=fishScriptTodo
+syn keyword fishTodo contained TODO FIXME XXX NOTE
+syn match fishComment "#.*$" contains=fishTodo
 
 "---------------------------------------------------------------------------------------------------------------------------/
 " Constructs to follow commands
 "---------------------------------------------------------------------------------------------------------------------------/
 
-syn match fishScriptSwitch "\-[A-Za-z0-9\-_\.]\+"
+syn match fishSwitch "\-[A-Za-z0-9\-_\.]\+"
 
-syn match fishScriptEscapeCodes "\\\(\(u\d\+\)\|\(e\[\(\d\+\(;\d\+\)*\)\?m\)\)" contained display
-syn match fishScriptFormatMarks "%[A-Za-z0-9]" contained display
-syn region fishScriptString oneline start='"' end='"' contains=fishScriptEscapeCodes,fishScriptFormatMarks,fishScriptVariables
-syn region fishScriptString oneline start="'" end="'" contains=fishScriptEscapeCodes,fishScriptFormatMarks,fishScriptVariables
+syn match fishEscapeCodes "\\\(\(u\d\+\)\|\(e\[\(\d\+\(;\d\+\)*\)\?m\)\)" contained display
+syn match fishFormatMarks "%[A-Za-z0-9]" contained display
+syn region fishString oneline start='"' end='"' contains=fishEscapeCodes,fishFormatMarks,fishVariables
+syn region fishString oneline start="'" end="'" contains=fishEscapeCodes,fishFormatMarks,fishVariables
 
-syn match fishScriptVariableStart "\$" contained
-syn match fishScriptVariables "\$[A-Za-z]\+\(\[\(\d\+\|\$[A-Za-z]\+\)\]\)\?" contains=fishScriptVariableStart
+syn match fishVariableStart "\$" contained
+syn match fishVariables "\$[A-Za-z]\+\(\[\(\d\+\|\$[A-Za-z]\+\)\]\)\?" contains=fishVariableStart
 
 syn keyword fishInitializations set alias
 
 syn keyword fishLanguageKeywords echo printf set_color
 
-syn region fishScriptSubstitution oneline matchgroup=fishScriptBlocks start="(" end=")" transparent
+syn region fishSubstitution oneline matchgroup=fishBlocks start="(" end=")" transparent
 
-syn region fishScriptTest oneline matchgroup=fishScriptTests start="\[ " end="\]" transparent
-syn keyword fishScriptTest test
+syn region fishTest oneline matchgroup=fishTests start="\[ " end="\]" transparent
+syn keyword fishTest test
 
 "---------------------------------------------------------------------------------------------------------------------------/
 " Blocks in fish scripts
 "---------------------------------------------------------------------------------------------------------------------------/
 "syn match fishFunctionName "[A-Za-z0-9_]\+" display
-syn region fishScriptFunction matchgroup=fishScriptFunctions start='function' end='end' nextgroup=fishFunctionName fold transparent
+syn region fishFunction matchgroup=fishFunctions start='function' end='end' nextgroup=fishFunctionName fold transparent
 
-syn match fishScriptConditionals "else\( if\)\?" contained
-syn region fishScriptConditional matchgroup=fishScriptConditionals start='if' skip='if' end='end' fold transparent contains=ALLBUT,fishScriptConditional
+syn match fishConditionals "else\( if\)\?" contained
+syn region fishConditional matchgroup=fishConditionals start='if' skip='if' end='end' fold transparent contains=ALLBUT,fishConditional
 
 
-syn region fishScriptLoop matchgroup=fishScriptRepeats start='for' end='end' fold transparent
+syn region fishLoop matchgroup=fishRepeats start='for' end='end' fold transparent
 
 
 
 let b:current_syntax = "fish"
 
-hi def link fishScriptTodo		Todo
-hi def link fishScriptComment		Comment
+hi def link fishTodo		Todo
+hi def link fishComment		Comment
 
-hi def link fishScriptSwitch		Operator
+hi def link fishSwitch		Operator
 
-hi def link fishScriptEscapeCodes	Constant
-hi def link fishScriptFormatMarks	Constant
-hi def link fishScriptString		String
+hi def link fishEscapeCodes	Constant
+hi def link fishFormatMarks	Constant
+hi def link fishString		String
 
-hi def link fishScriptVariableStart	Operator
-hi def link fishScriptVariables		Identifier
+hi def link fishVariableStart	Operator
+hi def link fishVariables		Identifier
 hi def link fishLanguageKeywords	Keyword
 
 hi def link fishFunctionName		Identifier
-hi def link fishScriptFunctions		Function
-hi def link fishScriptConditionals	Conditional
-hi def link fishScriptRepeats		Repeat
-hi def link fishScriptBlocks		Type
-hi def link fishScriptTest		Operator
-hi def link fishScriptTests		Operator
+hi def link fishFunctions		Function
+hi def link fishConditionals	Conditional
+hi def link fishRepeats		Repeat
+hi def link fishBlocks		Type
+hi def link fishTest		Operator
+hi def link fishTests		Operator
 
