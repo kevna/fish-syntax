@@ -20,9 +20,10 @@ syn match fishScriptComment "#.*$" contains=fishScriptTodo
 
 syn match fishScriptSwitch "\-[A-Za-z0-9\-_\.]\+"
 
+syn match fishScriptEscapeCodes "\\\(\(u\d\+\)\|\(e\[\(\d\+\(;\d\+\)*\)\?m\)\)" contained display
 syn match fishScriptFormatMarks "%[A-Za-z0-9]" contained display
-syn region fishScriptString oneline start='"' end='"' contains=fishScriptFormatMarks,fishScriptVariables
-syn region fishScriptString oneline start="'" end="'" contains=fishScriptFormatMarks,fishScriptVariables
+syn region fishScriptString oneline start='"' end='"' contains=fishScriptEscapeCodes,fishScriptFormatMarks,fishScriptVariables
+syn region fishScriptString oneline start="'" end="'" contains=fishScriptEscapeCodes,fishScriptFormatMarks,fishScriptVariables
 
 syn match fishScriptVariableStart "\$" contained
 syn match fishScriptVariables "\$[A-Za-z]\+\(\[\(\d\+\|\$[A-Za-z]\+\)\]\)\?" contains=fishScriptVariableStart
@@ -57,6 +58,7 @@ hi def link fishScriptComment		Comment
 
 hi def link fishScriptSwitch		Operator
 
+hi def link fishScriptEscapeCodes	Constant
 hi def link fishScriptFormatMarks	Constant
 hi def link fishScriptString		String
 
